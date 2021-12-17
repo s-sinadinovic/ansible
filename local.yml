@@ -1,0 +1,9 @@
+- hosts: localhost
+  pre_tasks:
+  # Update homebrew and install all packages
+  - community.general.homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+  tasks:
+    - include: tasks/zsh-setup.yml
