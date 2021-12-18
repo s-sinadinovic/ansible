@@ -1,4 +1,7 @@
 # Commands
+
 ```
-ansible-playbook -t dotfiles --ask-vault-pass main.yml
+ansible-playbook --ask-become-pass --ask-vault-pass main.yml
 ```
+
+note: Ignores an error thrown by authorize_key in ssh.yml

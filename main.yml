@@ -6,7 +6,7 @@
   - name: Update cache (brew)
     community.general.homebrew:
       update_homebrew: yes
-      when: ansible_distribution == 'MacOSX'
+    when: ansible_distribution == 'MacOSX'
   tasks:
   - include: tasks/ssh.yml
   - include: tasks/zsh.yml
