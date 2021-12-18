@@ -1,0 +1,24 @@
+- name: Installing stow
+  community.general.homebrew:
+    name: stow
+  when: ansible_distribution == 'MacOSX'
+  tags:
+    - dotfiles
+    - stow
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:s-sinadinovic/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+  tags:
+    - dotfiles
+    - stow
+- name: Stow dotfiles
+  shell: cd /Users/samuelsinadinovic/.dotfiles && chmod +x install && sh ./macosx
+  become: yes
+  tags:
+    - dotfiles
+    - stow
