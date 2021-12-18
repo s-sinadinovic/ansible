@@ -1,9 +1,8 @@
 - hosts: localhost
   pre_tasks:
-  # Update homebrew and install all packages
-  - community.general.homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
-
+  - name: Update cache
+    community.general.homebrew:
+      update_homebrew: yes
   tasks:
-    - include: tasks/zsh-setup.yml
+  - include: tasks/zsh.yml
+  - include: tasks/node.yml
