@@ -1,8 +1,0 @@
-- hosts: localhost
-  pre_tasks:
-  - name: Update cache
-    community.general.homebrew:
-      update_homebrew: yes
-  tasks:
-  - include: tasks/zsh.yml
-  - include: tasks/node.yml

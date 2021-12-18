@@ -1,4 +1,4 @@
-- name: Install Oh My Zsh
+- name: Install oh-my-zsh (curl | sh)
   shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
   tags:
   - zsh

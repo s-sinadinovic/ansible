@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+  pre_tasks:
+  - name: Update cache (brew)
+    community.general.homebrew:
+      update_homebrew: yes
+      when: ansible_distribution == 'MacOSX'
+  tasks:
+  - include: tasks/ssh.yml
+  - include: tasks/zsh.yml
+  - include: tasks/node.yml
