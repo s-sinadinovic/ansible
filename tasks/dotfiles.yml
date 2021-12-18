@@ -17,8 +17,7 @@
     - dotfiles
     - stow
 - name: Stow dotfiles
-  shell: cd $HOME/.dotfiles && chmod +x install && sh ./macosx
-  become: yes
+  shell: cd {{ lookup('env', 'HOME') }}/.dotfiles && chmod +x install && chmod +x macosx && sh ./macosx
   tags:
     - dotfiles
     - stow
