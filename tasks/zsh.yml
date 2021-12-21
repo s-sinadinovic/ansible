@@ -2,3 +2,10 @@
   shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
   tags:
   - zsh
+
+- name: Install iterm2 (homebrew)
+  community.general.homebrew:
+    name: homebrew/cask/iterm2
+  tags:
+  - iterm2
+  when: ansible_distribution == 'MacOSX'
