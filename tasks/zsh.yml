@@ -1,7 +1,30 @@
-- name: Install oh-my-zsh (curl | sh)
-  shell: curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+- name: Check that the somefile.conf exists
+  stat:
+    path: /home/theprimeagen/.oh-my-zsh
+  register: oh_my_stats
   tags:
-  - zsh
+    - zsh
+
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags:
+    - zsh
+  when: oh_my_stats.stat.exists == False
+  become_user: samuelsinadinovic
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags:
+    - zsh
+
+- name: Install tmux (homebrew)
+  community.general.homebrew:
+    name: tmux
+  tags:
+  - tmux
+  when: ansible_distribution == 'MacOSX'
 
 - name: Install iterm2 (homebrew)
   community.general.homebrew:
@@ -9,3 +32,15 @@
   tags:
   - iterm2
   when: ansible_distribution == 'MacOSX'
+
+- name: Install fzf (homebrew)
+  community.general.homebrew:
+    name: fzf
+  tags:
+  - fzf
+  when: ansible_distribution == 'MacOSX'
+
+- name: Shell integration for fzf
+  shell: /usr/local/opt/fzf/install
+  tags:
+  - fzf

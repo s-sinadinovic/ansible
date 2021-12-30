@@ -9,6 +9,9 @@
     when: ansible_distribution == 'MacOSX'
   tasks:
   - include: tasks/ssh.yml
+  - include: tasks/git.yml
   - include: tasks/zsh.yml
   - include: tasks/node.yml
+  - include: tasks/rust.yml
   - include: tasks/dotfiles.yml
+  - include: tasks/neovim.yml

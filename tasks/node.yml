@@ -15,3 +15,10 @@
   become: yes
   tags:
   - node
+- name: Install tldr (npm -g)
+  npm:
+    name: tldr
+    global: true
+  tags:
+  - tldr
+  - node

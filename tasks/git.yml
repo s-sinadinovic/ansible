@@ -1,3 +1,11 @@
+- name: Install git (homebrew)
+  community.general.homebrew:
+    name: git
+  tags:
+  - git
+  - git-personal
+  when: ansible_distribution == 'MacOSX'
+
 - name: Git personal setup email
   git_config:
     name: user.email
