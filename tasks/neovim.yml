@@ -41,3 +41,20 @@
     - neovim
     - ts
     - node
+
+- name: Install rust-analyzer (homebrew)
+  community.general.homebrew:
+    name: rust-analyzer
+  tags:
+    - neovim
+    - rust
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install vscode-eslint-language-server (npm -g)
+  npm:
+    name: vscode-langservers-extracted
+    global: true
+  tags:
+    - eslint
+    - neovim
+    - ts

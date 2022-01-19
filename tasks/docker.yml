@@ -1,0 +1,6 @@
+- name: Install docker (homebrew)
+  community.general.homebrew:
+    name: docker 
+  tags:
+  - docker 
+  when: ansible_distribution == 'MacOSX'

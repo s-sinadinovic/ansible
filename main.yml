@@ -8,6 +8,7 @@
       update_homebrew: yes
     when: ansible_distribution == 'MacOSX'
   tasks:
+  - include: tasks/docker.yml
   - include: tasks/ssh.yml
   - include: tasks/git.yml
   - include: tasks/zsh.yml

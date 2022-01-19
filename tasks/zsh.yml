@@ -26,6 +26,18 @@
   - tmux
   when: ansible_distribution == 'MacOSX'
 
+- name: Install kitty (curl | sh)
+  shell: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+  tags:
+  - kitty
+
+- name: Install Starship (homebrew)
+  community.general.homebrew:
+    name: starship
+  tags:
+  - zsh
+  - starship
+
 - name: Install iterm2 (homebrew)
   community.general.homebrew:
     name: homebrew/cask/iterm2
