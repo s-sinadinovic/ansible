@@ -1,6 +1,6 @@
-- name: Install docker (homebrew)
+- name: Install awscli (homebrew)
   community.general.homebrew:
-    name: docker 
+    name: awscli
   tags:
-  - docker 
+  - aws
   when: ansible_distribution == 'MacOSX'
