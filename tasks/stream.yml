@@ -1,0 +1,7 @@
+- name: Install obs (homebrew cask)
+  community.general.homebrew_cask:
+    name: obs
+  tags:
+  - stream
+  - obs
+  when: ansible_distribution == 'MacOSX'

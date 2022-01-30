@@ -1,6 +1,6 @@
 - name: Check that the somefile.conf exists
   stat:
-    path: /home/theprimeagen/.oh-my-zsh
+    path: ~/.oh-my-zsh
   register: oh_my_stats
   tags:
     - zsh

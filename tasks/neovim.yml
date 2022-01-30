@@ -42,7 +42,21 @@
     - ts
     - node
 
-- name: Install rust-analyzer (homebrew)
+- name: Install lua-language-server (homebrew)
+  community.general.homebrew:
+    name: lua-language-server
+  tags:
+    - neovim
+    - lua
+
+- name: Install stylua (homebrew)
+  community.general.homebrew:
+    name: stylua
+  tags:
+    - neovim
+    - lua
+
+- name: Install rust-aalyzer (homebrew)
   community.general.homebrew:
     name: rust-analyzer
   tags:

@@ -1,0 +1,5 @@
+- name: Install docker (homebrew cask)
+  community.general.homebrew_cask:
+    name: docker
+  tags:
+  - docker
