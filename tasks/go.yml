@@ -1,0 +1,14 @@
+- name: Install go (homebrew)
+  community.general.homebrew:
+    name: 'go'
+  tags:
+  - go
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install gopls (homebrew)
+  community.general.homebrew:
+    name: 'gopls'
+  tags:
+  - go
+  when: ansible_distribution == 'MacOSX'
+

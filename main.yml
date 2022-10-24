@@ -15,6 +15,7 @@
   - include: tasks/zsh.yml
   - include: tasks/node.yml
   - include: tasks/rust.yml
+  - include: tasks/go.yml
   - include: tasks/dotfiles.yml
   - include: tasks/neovim.yml
   - include: tasks/stream.yml

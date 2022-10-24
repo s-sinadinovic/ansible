@@ -20,3 +20,10 @@
     value: "s-sinadinovic"
   tags:
   - git-personal
+
+- name: Install GitHub CLI (brew)
+  community.general.homebrew:
+    name: gh
+  tags:
+  - git
+  - github

@@ -22,3 +22,9 @@
   tags:
   - tldr
   - node
+- name: Install node and npm (homebrew)
+  community.general.homebrew:
+    name: yarn
+  tags:
+  - node
+  - yarn 

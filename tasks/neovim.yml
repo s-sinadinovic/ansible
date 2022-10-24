@@ -56,7 +56,7 @@
     - neovim
     - lua
 
-- name: Install rust-aalyzer (homebrew)
+- name: Install rust-analyzer (homebrew)
   community.general.homebrew:
     name: rust-analyzer
   tags:
@@ -72,3 +72,63 @@
     - eslint
     - neovim
     - ts
+
+- name: Tap ethereum/ethereum (homebrew)
+  community.general.homebrew_tap:
+    name: ethereum/ethereum
+  tags:
+    - neovim
+    - solidity
+    - ethereum
+
+- name: Install solidity (homebrew)
+  community.general.homebrew:
+    name: solidity
+  tags:
+    - neovim
+    - solidity
+    - solc
+    - ethereum
+
+- name: Install solidity-language-server (npm)
+  npm:
+    name: solidity-language-server
+    global: true
+  tags:
+    - neovim
+    - solidity
+    - solc
+    - ethereum
+
+- name: Tap omnisharp/omnisharp-roslyn (homebrew)
+  community.general.homebrew_tap:
+    name: omnisharp/omnisharp-roslyn
+  tags:
+    - neovim
+    - omnisharp
+    - csharp
+
+- name: Install Omnisharp (homebrew)
+  community.general.homebrew:
+    name: omnisharp-mono
+  tags:
+    - neovim
+    - omnisharp
+    - csharp
+
+- name: Install Lua LSP (homebrew)
+  community.general.homebrew:
+    name: lua-language-server 
+  tags:
+    - neovim
+    - omnisharp
+    - csharp
+
+- name: Install CSS Modules LS (npm)
+  npm:
+    name: cssmodules-language-server
+    global: true
+  tags:
+    - neovim
+    - css
+
