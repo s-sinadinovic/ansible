@@ -3,9 +3,14 @@
   ansible.builtin.apt: 
     name: zsh
     
-- name: Change shell to zsh
+# - name: Change shell to zsh
+#   become: true
+#   shell: chsh -s $(which zsh) $(whoami)
+- name: Change user shell to zsh
   become: true
-  shell: chsh -s $(which bash) $(whoami)
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
 
 - name: Check that the somefile.conf exists
   stat:
