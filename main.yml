@@ -7,15 +7,43 @@
     community.general.homebrew:
       update_homebrew: yes
     when: ansible_distribution == 'MacOSX'
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tasks:
-  - include: tasks/docker.yml
-  - include: tasks/aws.yml
-  - include: tasks/ssh.yml
-  - include: tasks/git.yml
-  - include: tasks/zsh.yml
-  - include: tasks/node.yml
-  - include: tasks/rust.yml
-  - include: tasks/go.yml
-  - include: tasks/dotfiles.yml
-  - include: tasks/neovim.yml
-  - include: tasks/stream.yml
+  # Install for Ubuntu
+  - include: tasks/ubuntu/ssh.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  - include: tasks/ubuntu/git.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  - include: tasks/ubuntu/core.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  - include: tasks/ubuntu/zsh.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  # Install for MacOSX
+  - include: tasks/macos/docker.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/aws.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/ssh.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/git.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/zsh.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/node.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/rust.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/go.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/dotfiles.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/neovim.yml
+    when: ansible_distribution == 'MacOSX'
+  - include: tasks/macos/stream.yml
+    when: ansible_distribution == 'MacOSX'
