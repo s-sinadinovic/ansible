@@ -4,7 +4,6 @@
     name: zsh
     
 - name: Change shell to zsh
-  become: true
   shell: chsh -s $(which zsh)
 
 - name: Check that the somefile.conf exists
