@@ -3,9 +3,6 @@
   ansible.builtin.apt: 
     name: zsh
     
-# - name: Change shell to zsh
-#   become: true
-#   shell: chsh -s $(which zsh) $(whoami)
 - name: Change user shell to zsh
   become: true
   user:
