@@ -17,3 +17,9 @@
   become: true
   apt:
     name: ["clang", "clang-11", "clang-12", "clangd", "clangd-11", "clangd-12"]
+
+- name: Install packages
+  become: true
+  apt:
+    name: ["tmux", "wireshark", "fzf", "ripgrep"]
+  tags:
