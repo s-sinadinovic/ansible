@@ -22,4 +22,3 @@
   become: true
   apt:
     name: ["tmux", "wireshark", "fzf", "ripgrep"]
-  tags:
