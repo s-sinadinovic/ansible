@@ -1,3 +1,16 @@
+- name: Install nvm
+  shell: >
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
+    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+  tags:
+  - node
+
+- name: Install node and set version
+  shell: >
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 18 && nvm alias default 18"
+    creates=/home/{{ ansible_user_id }}/.nvm/alias
+  tags:
+    - node
 
 - name: npmjs prefix
   shell: mkdir -p ~/.local/.npm-global
@@ -20,16 +33,9 @@
   - node
   - npm-path
 
-- name: Install nvm
+- name: Delete nvm prefix v18.15.0
   shell: >
-    curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
-    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
-  tags:
-  - node
-
-- name: Install node and set version
-  shell: >
-    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 18 && nvm use --delete-prefix v18.15.0 --silent && nvm alias default 18"
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm use --delete-prefix v18.15.0 --silent"
     creates=/home/{{ ansible_user_id }}/.nvm/alias
   tags:
     - node
