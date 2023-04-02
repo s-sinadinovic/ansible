@@ -1,39 +1,37 @@
-# - name: npmjs prefix
-#   shell: mkdir -p ~/.local/.npm-global
-#   tags:
-#   - node
-#
-# - name: add npmjs to path
-#   shell: PATH=~/.local/.npm-global/bin:$PATH
-#   tags:
-#   - node
-#
-# - name: npmjs global settings
-#   shell: npm config set prefix '~/.local/.npm-global'
-#   tags:
-#   - node
-#
-# - name: npmjs global settings export path in case I don't have dotfiles installed
-#   shell: export PATH=~/.local/.npm-global/bin:$PATH
-#   tags:
-#   - node
-#   - npm-path
-
 - name: Install nvm
-  become: true
-  ansible.builtin.shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-  tags: 
-  - node
-
-- name: Install and use node 18.5.0 LTS
-  shell: source /home/{{ user }}/.nvm/nvm.sh && nvm install node 18.5.0 && nvm use node 18.5.0
-  args:
-    executable: /bin/zsh
+  shell: >
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
+    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
   tags:
   - node
+
+- name: Install node and set version
+  shell: >
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 18 && nvm alias default 18"
+    creates=/home/{{ ansible_user_id }}/.nvm/alias
+  tags:
+    - node
+
+- name: npmjs prefix
+  shell: mkdir -p ~/.local/.npm-global
+  tags:
+  - node
+
+- name: add npmjs to path
+  shell: PATH=~/.local/.npm-global/bin:$PATH
+  tags:
+  - node
+
+- name: npmjs global settings
+  shell: npm config set prefix '~/.local/.npm-global'
+  tags:
+  - node
+
+- name: npmjs global settings export path in case I don't have dotfiles installed
+  shell: export PATH=~/.local/.npm-global/bin:$PATH
+  tags:
+  - node
+  - npm-path
 
 - name: Install Yarn
   npm:
