@@ -29,6 +29,8 @@
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   - include: tasks/ubuntu/nvim.yml
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  - include: tasks/ubuntu/node.yml
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   # Install for MacOSX
   - include: tasks/macos/docker.yml
     when: ansible_distribution == 'MacOSX'

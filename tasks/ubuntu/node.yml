@@ -1,0 +1,75 @@
+- name: npmjs prefix
+  shell: mkdir -p ~/.local/.npm-global
+  tags:
+  - node
+
+- name: add npmjs to path
+  shell: PATH=~/.local/.npm-global/bin:$PATH
+  tags:
+  - node
+
+- name: npmjs global settings
+  shell: npm config set prefix '~/.local/.npm-global'
+  tags:
+  - node
+
+- name: npmjs global settings export path in case I don't have dotfiles installed
+  shell: export PATH=~/.local/.npm-global/bin:$PATH
+  tags:
+  - node
+  - npm-path
+
+- name: Install nvm
+  become: true
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  tags: 
+  - node
+
+- name: Source ~/.zshrc
+  become: true
+  shell: source ~/.zshrc
+  tags:
+  - node
+
+- name: Install and use node 18.5.0 LTS
+  shell: nvm install node 18.5.0 && nvm use node 18.5.0
+  tags:
+    - node
+
+- name: Install Yarn
+  npm:
+    name: yarn
+    global: yes
+  tags:
+    - node
+
+- name: Install eslint
+  npm:
+    name: eslint
+    global: yes
+  tags:
+    - node
+
+- name: Install Typescript server
+  npm:
+    name: typescript-language-server
+    global: yes
+  tags:
+    - node
+
+- name: Install Typescript
+  npm:
+    name: typescript
+    global: yes
+  tags:
+    - node
+
+- name: Install TS-Node
+  npm:
+    name: ts-node
+    global: yes
+  tags:
+    - node
