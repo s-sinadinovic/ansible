@@ -6,19 +6,28 @@
 - name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
   become: true
   apt:
-    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
 
 - name: Install System Packages 3 (the rest)
   become: true
   apt:
-    name: [ "curl", "htop", "golang", "lsof", "ccache", "ninja-build", "python3-pip", "dconf-editor", "nvidia-settings", "moreutils", "clangd"]
+    name: ["curl", "htop", "lsof", "ccache", "ninja-build"]
 
-- name: Install Clang
+- name: Install Workflow Packages
   become: true
   apt:
-    name: ["clang", "clang-11", "clang-12", "clangd", "clangd-11", "clangd-12"]
+    name: ["tmux", "fzf", "ripgrep"]
 
-- name: Install packages
+- name: Install Search Tools
   become: true
   apt:
-    name: ["tmux", "wireshark", "fzf", "ripgrep"]
+    name: ["fzf", "ripgrep"]
+
+- name: Install Language Packages (python3-pip, nodejs, npm)
+  become: true
+  apt:
+    name: ["python3-pip", "nodejs", "npm"]
+
+- name: Install Rust
+  become: true
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
