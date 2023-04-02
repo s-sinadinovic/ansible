@@ -1,23 +1,23 @@
-- name: npmjs prefix
-  shell: mkdir -p ~/.local/.npm-global
-  tags:
-  - node
-
-- name: add npmjs to path
-  shell: PATH=~/.local/.npm-global/bin:$PATH
-  tags:
-  - node
-
-- name: npmjs global settings
-  shell: npm config set prefix '~/.local/.npm-global'
-  tags:
-  - node
-
-- name: npmjs global settings export path in case I don't have dotfiles installed
-  shell: export PATH=~/.local/.npm-global/bin:$PATH
-  tags:
-  - node
-  - npm-path
+# - name: npmjs prefix
+#   shell: mkdir -p ~/.local/.npm-global
+#   tags:
+#   - node
+#
+# - name: add npmjs to path
+#   shell: PATH=~/.local/.npm-global/bin:$PATH
+#   tags:
+#   - node
+#
+# - name: npmjs global settings
+#   shell: npm config set prefix '~/.local/.npm-global'
+#   tags:
+#   - node
+#
+# - name: npmjs global settings export path in case I don't have dotfiles installed
+#   shell: export PATH=~/.local/.npm-global/bin:$PATH
+#   tags:
+#   - node
+#   - npm-path
 
 - name: Install nvm
   become: true
@@ -28,16 +28,12 @@
   tags: 
   - node
 
-- name: Source ~/.zshrc
-  become: true
-  shell: source ~/.zshrc
+- name: Install and use node 18.5.0 LTS
+  shell: source /home/{{ user }}/.nvm/nvm.sh && nvm install node 18.5.0 && nvm use node 18.5.0
+  args:
+    executable: /bin/zsh
   tags:
   - node
-
-- name: Install and use node 18.5.0 LTS
-  shell: nvm install node 18.5.0 && nvm use node 18.5.0
-  tags:
-    - node
 
 - name: Install Yarn
   npm:
