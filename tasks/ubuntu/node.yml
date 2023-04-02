@@ -52,26 +52,26 @@
 #   tags:
 #   - node
 
-- name: npmjs prefix
-  shell: mkdir -p ~/.local/.npm-global
-  tags:
-  - node
-
-- name: add npmjs to path
-  shell: PATH=~/.local/.npm-global/bin:$PATH
-  tags:
-  - node
-
-- name: npmjs global settings
-  shell: npm config set prefix '~/.local/.npm-global'
-  tags:
-  - node
-
-- name: npmjs global settings export path in case I don't have dotfiles installed
-  shell: export PATH=~/.local/.npm-global/bin:$PATH
-  tags:
-  - node
-  - npm-path
+# - name: npmjs prefix
+#   shell: mkdir -p ~/.local/.npm-global
+#   tags:
+#   - node
+#
+# - name: add npmjs to path
+#   shell: PATH=~/.local/.npm-global/bin:$PATH
+#   tags:
+#   - node
+#
+# - name: npmjs global settings
+#   shell: npm config set prefix '~/.local/.npm-global'
+#   tags:
+#   - node
+#
+# - name: npmjs global settings export path in case I don't have dotfiles installed
+#   shell: export PATH=~/.local/.npm-global/bin:$PATH
+#   tags:
+#   - node
+#   - npm-path
 
 # - name: Delete Prefix
 #   shell: >
@@ -93,37 +93,37 @@
 #     - node
 
 
-- name: Install Yarn
-  npm:
-    name: yarn
-    global: yes
-  tags:
-    - node
-
-- name: Install eslint
-  npm:
-    name: eslint
-    global: yes
-  tags:
-    - node
-
-- name: Install Typescript server
-  npm:
-    name: typescript-language-server
-    global: yes
-  tags:
-    - node
-
-- name: Install Typescript
-  npm:
-    name: typescript
-    global: yes
-  tags:
-    - node
-
-- name: Install TS-Node
-  npm:
-    name: ts-node
-    global: yes
-  tags:
-    - node
+# - name: Install Yarn
+#   npm:
+#     name: yarn
+#     global: yes
+#   tags:
+#     - node
+#
+# - name: Install eslint
+#   npm:
+#     name: eslint
+#     global: yes
+#   tags:
+#     - node
+#
+# - name: Install Typescript server
+#   npm:
+#     name: typescript-language-server
+#     global: yes
+#   tags:
+#     - node
+#
+# - name: Install Typescript
+#   npm:
+#     name: typescript
+#     global: yes
+#   tags:
+#     - node
+#
+# - name: Install TS-Node
+#   npm:
+#     name: ts-node
+#     global: yes
+#   tags:
+#     - node
