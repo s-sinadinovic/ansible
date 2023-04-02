@@ -1,3 +1,34 @@
+- name: Install nvm
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.38.0/install.sh | bash
+  args:
+    executable: /bin/bash
+    chdir: "$HOME"
+    creates: "$HOME/.nvm/nvm.sh"
+  tags:
+  - node
+
+- name: Setup .profile
+  ansible.builtin.lineinfile:
+    path: ~/.profile
+    line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
+    create: yes
+  tags:
+  - node
+
+- name: Install node
+  become: no
+  shell: >
+    . {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install {{ item }}
+  args:
+    executable: /bin/bash
+    chdir: "{{ ansible_env.HOME }}"
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/{{ item }}"
+  loop:
+    - 14.20.0
+  tags:
+  - node
+
 # - name: Install nvm
 #   shell: >
 #     curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
@@ -61,30 +92,6 @@
 #   tags:
 #     - node
 
-- name: Install nvm
-  ansible.builtin.shell: >
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.38.0/install.sh | bash
-  args:
-    executable: /bin/bash
-    chdir: "$HOME"
-    creates: "$HOME/.nvm/nvm.sh"
-
-- name: Setup .profile
-  ansible.builtin.lineinfile:
-    path: ~/.profile
-    line: source ~/.nvm/nvm.sh # This will make sure Node is on the user's PATH
-    create: yes
-
-- name: Install node
-  become: no
-  shell: >
-    . {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install {{ item }}
-  args:
-    executable: /bin/bash
-    chdir: "{{ ansible_env.HOME }}"
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/{{ item }}"
-  loop:
-    - 14.20.0
 
 - name: Install Yarn
   npm:
