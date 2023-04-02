@@ -22,16 +22,23 @@
   tags:
   - node
 
-- name: npmjs global settings
-  shell: npm config set prefix '~/.local/.npm-global'
-  tags:
-  - node
+# - name: npmjs global settings
+#   shell: npm config set prefix '~/.local/.npm-global'
+#   tags:
+#   - node
 
 - name: npmjs global settings export path in case I don't have dotfiles installed
   shell: export PATH=~/.local/.npm-global/bin:$PATH
   tags:
   - node
   - npm-path
+
+# - name: Delete Prefix
+#   shell: >
+#     /bin/zsh -c "source ~/.nvm/nvm.sh && nvm use --delete-prefix v16.20.0 --silent"
+#     creates=/home/{{ ansible_user_id }}/.nvm/alias
+#   tags:
+#     - node
 
 - name: Install Yarn
   npm:
