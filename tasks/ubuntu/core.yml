@@ -28,10 +28,6 @@
   apt:
     name: ["python3-pip"]
 
-- name: Add node.js PPA
-  become: true
-  shell: curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
-
 - name: Install node
   become: true
   apt:
