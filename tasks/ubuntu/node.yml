@@ -7,7 +7,7 @@
 
 - name: Install node and set version
   shell: >
-    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 18 && nvm alias default 18"
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
     creates=/home/{{ ansible_user_id }}/.nvm/alias
   tags:
     - node
@@ -32,13 +32,6 @@
   tags:
   - node
   - npm-path
-
-- name: Delete nvm prefix v18.15.0
-  shell: >
-    /bin/bash -c "source ~/.nvm/nvm.sh && nvm use --delete-prefix v18.15.0 --silent"
-    creates=/home/{{ ansible_user_id }}/.nvm/alias
-  tags:
-    - node
 
 - name: Install Yarn
   npm:
