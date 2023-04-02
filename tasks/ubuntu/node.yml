@@ -1,16 +1,16 @@
-- name: Install nvm
-  shell: >
-    curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
-    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
-  tags:
-  - node
-
-- name: Install node and set version
-  shell: >
-    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
-    creates=/home/{{ ansible_user_id }}/.nvm/alias
-  tags:
-    - node
+# - name: Install nvm
+#   shell: >
+#     curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
+#     creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+#   tags:
+#   - node
+#
+# - name: Install node and set version
+#   shell: >
+#     /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
+#     creates=/home/{{ ansible_user_id }}/.nvm/alias
+#   tags:
+#     - node
 
 - name: npmjs prefix
   shell: mkdir -p ~/.local/.npm-global
@@ -22,10 +22,10 @@
   tags:
   - node
 
-# - name: npmjs global settings
-#   shell: npm config set prefix '~/.local/.npm-global'
-#   tags:
-#   - node
+- name: npmjs global settings
+  shell: npm config set prefix '~/.local/.npm-global'
+  tags:
+  - node
 
 - name: npmjs global settings export path in case I don't have dotfiles installed
   shell: export PATH=~/.local/.npm-global/bin:$PATH
@@ -39,6 +39,25 @@
 #     creates=/home/{{ ansible_user_id }}/.nvm/alias
 #   tags:
 #     - node
+
+- name: Install N
+  npm:
+    name: n
+    global: yes
+  tags:
+    - node
+
+# - name: Install node and set version
+#   shell: >
+#     /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16 && nvm alias default 16"
+#     creates=/home/{{ ansible_user_id }}/.nvm/alias
+#   tags:
+#     - node
+#
+- name: Install correct version of Node
+  shell: n 16
+  tags:
+    - node
 
 - name: Install Yarn
   npm:
