@@ -29,6 +29,15 @@
   tags:
   - node
 
+- name: Install Yarn
+  become: true
+  npm:
+    name: yarn 
+    global: yes
+  tags:
+  - node
+  - yarn
+  
 # - name: Install nvm
 #   shell: >
 #     curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
