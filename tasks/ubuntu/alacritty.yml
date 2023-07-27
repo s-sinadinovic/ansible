@@ -1,0 +1,12 @@
+- name: Install Alacritty dependencies
+  become: true
+  apt:
+    name: ["cmake", "pkg-config", "libfreetype6-dev", "libfontconfig1-dev", "libxcb-xfixes0-dev", "libxkbcommon-dev", "python3"]
+  tags:
+  - alacritty
+
+- name: Install "Alacritty" Rust package
+  community.general.cargo:
+    name: alacritty
+  tags:
+  - alacritty

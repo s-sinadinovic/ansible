@@ -6,3 +6,6 @@
 
 ## Notes
 - Must clone file with SSH to push changes to the repo
+
+## TODO:
+- Source cargo so Alacritty can install without restartarting terminal
