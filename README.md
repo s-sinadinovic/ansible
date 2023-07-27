@@ -1,7 +1,7 @@
 # Commands
 
 ```
-yes | ./ansible-run-ubuntu && ansible-playbook --ask-become-pass --ask-vault-pass main.yml -vvvv
+./ansible-run-ubuntu && ansible-playbook --ask-become-pass --ask-vault-pass main.yml -vvvv
 ```
 
 ## Notes
