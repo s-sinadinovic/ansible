@@ -11,7 +11,7 @@
 - name: Install System Packages 3 (the rest)
   become: true
   apt:
-    name: ["curl", "htop", "lsof", "ccache", "ninja-build"]
+    name: ["curl", "htop", "lsof", "ccache", "ninja-build", "i3", "dconf-editor", "pavucontrol", "ubuntu-mate-desktop"]
 
 - name: Install Workflow Packages
   become: true
@@ -32,3 +32,15 @@
   become: true
   apt:
     name: ["nodejs", "npm"]
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
+  tags:
+    - install
+    - core
+
+- name: dconf i3
+  shell: dconf write /org/mate/desktop/background/show-desktop-icons "false"
+  tags:
+    - install
+    - core
