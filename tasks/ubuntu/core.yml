@@ -11,7 +11,7 @@
 - name: Install System Packages 3 (the rest)
   become: true
   apt:
-    name: ["curl", "htop", "lsof", "ccache", "ninja-build", "i3", "dconf-editor", "pavucontrol", "ubuntu-mate-desktop"]
+    name: ["curl", "htop", "lsof", "ccache", "ninja-build", "i3", "dconf-editor", "pavucontrol", "ubuntu-mate-desktop", "rofi"]
 
 - name: Install Workflow Packages
   become: true
