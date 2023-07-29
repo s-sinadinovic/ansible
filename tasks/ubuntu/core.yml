@@ -13,6 +13,15 @@
   apt:
     name: ["curl", "htop", "lsof", "ccache", "ninja-build", "i3", "dconf-editor", "pavucontrol", "ubuntu-mate-desktop", "rofi"]
 
+- name: Install Clang
+  become: true
+  apt:
+    name: ["clang", "clang-11", "clang-12"]
+  tags:
+    - install
+    - neovim
+    - core
+
 - name: Install Workflow Packages
   become: true
   apt:
