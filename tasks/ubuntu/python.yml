@@ -1,14 +1,14 @@
-- name: Install Conda prerequisites
-  become: true
-  apt:
-    name: ["libgl1-mesa-glx" "libegl1-mesa" "libxrandr2" "libxrandr2" "libxss1" "libxcursor1" "libxcomposite1" "libasound2" "libxi6" "libxtst6"]
-  tags:
-    - python
-
-- name: Install Python
-  become: true
-  apt:
-    name: ["python3-pip"]
-  tags:
-    - python
-
+# - name: Install Conda prerequisites
+#   become: true
+#   apt:
+#     name: ["libgl1-mesa-glx" "libegl1-mesa" "libxrandr2" "libxrandr2" "libxss1" "libxcursor1" "libxcomposite1" "libasound2" "libxi6" "libxtst6"]
+#   tags:
+#     - python
+#
+# - name: Install Python
+#   become: true
+#   apt:
+#     name: ["python3-pip"]
+#   tags:
+#     - python
+#
